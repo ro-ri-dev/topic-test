@@ -26,8 +26,10 @@ Route::middleware(['auth'])->group(function () {
     })->name('admin.dashboard');
     Route::get('/admin/topics/create', [TopicController::class, 'create'])->name('admin.topics.create');
     Route::post('/admin/topics', [TopicController::class, 'store'])->name('admin.topics.store');
-    Route::get('/admin/topics/{topic}/questions', function (\App\Models\Topic $topic) {
-        return view('admin.questions.index', compact('topic'));
+    Route::get('/admin/topics', [TopicController::class, 'index'])->name('admin.topics.index');
+    Route::get('/admin/topics/{topic}/questions', function (Topic $topic) {
+        $questions = $topic->questions()->latest()->get();
+        return view('admin.questions.index', compact('topic', 'questions'));
     })->name('admin.questions.index');
     Route::get('/admin/topics/{topic}/questions/create', function (Topic $topic) {
         return view('admin.questions.create', compact('topic'));

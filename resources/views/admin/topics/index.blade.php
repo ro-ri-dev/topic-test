@@ -19,7 +19,11 @@
                     @else
                         <ul class="list-disc pl-5 space-y-2">
                             @foreach($topics as $topic)
-                                <li>{{ $topic->name }}</li>
+                                <li>
+    <a href="{{ route('admin.questions.index', $topic) }}" class="underline">
+        {{ $topic->name }}
+    </a>
+</li>
                             @endforeach
                         </ul>
                     @endif

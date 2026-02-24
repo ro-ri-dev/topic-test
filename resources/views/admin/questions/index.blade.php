@@ -5,9 +5,9 @@
                 Preguntas · {{ $topic->name }}
             </h2>
 
-            <a href="{{ route('admin.topics.index') }}" class="underline text-sm text-gray-600 hover:text-gray-900">
-                ← Volver a topics
-            </a>
+<a href="{{ route('admin.topics.index') }}" class="underline text-sm text-gray-600 hover:text-gray-900">
+    ← Volver a topics
+</a>
         </div>
     </x-slot>
 
@@ -27,9 +27,9 @@
 @endif
 
                     <div class="mt-4">
-                        <a href="#" class="underline text-sm text-gray-600 hover:text-gray-900">
-                            + Crear pregunta
-                        </a>
+<a href="{{ route('admin.questions.create', $topic) }}" class="underline text-sm text-gray-600 hover:text-gray-900">
+    + Crear pregunta
+</a>
                     </div>
                 </div>
             </div>
