@@ -31,6 +31,15 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/topics', [TopicController::class, 'store'])
         ->name('admin.topics.store');
 
+    Route::get('/admin/topics/{topic}/edit', [TopicController::class, 'edit'])
+        ->name('admin.topics.edit');
+
+    Route::patch('/admin/topics/{topic}', [TopicController::class, 'update'])
+        ->name('admin.topics.update');
+
+    Route::delete('/admin/topics/{topic}', [TopicController::class, 'destroy'])
+        ->name('admin.topics.destroy');
+
 
     // Questions
     Route::get('/admin/topics/{topic}/questions', function (Topic $topic) {
@@ -44,6 +53,15 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/admin/topics/{topic}/questions', [QuestionController::class, 'store'])
         ->name('admin.questions.store');
+
+    Route::get('/admin/questions/{question}/edit', [QuestionController::class, 'edit'])
+        ->name('admin.questions.edit');
+
+    Route::patch('/admin/questions/{question}', [QuestionController::class, 'update'])
+        ->name('admin.questions.update');
+
+    Route::delete('/admin/questions/{question}', [QuestionController::class, 'destroy'])
+        ->name('admin.questions.destroy');
 });
 
 
