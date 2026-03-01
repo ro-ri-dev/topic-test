@@ -60,6 +60,13 @@ class QuestionController extends Controller
 
             'correct' => ['required', 'string'], // "a:ID" o "n:INDEX"
         ]);
+        $deleteIds = $request->input('answers_delete', []);
+
+        if (!empty($deleteIds)) {
+            $question->answers()
+                ->whereIn('id', $deleteIds)
+                ->delete();
+        }
 
         return DB::transaction(function () use ($question, $data) {
 
