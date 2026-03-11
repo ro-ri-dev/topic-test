@@ -44,6 +44,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/topics/{topic}/play', [TestPlayController::class, 'show'])
         ->name('topics.play');
 
+    Route::post('/topics/{topic}/play', [TestPlayController::class, 'check'])
+        ->name('topics.play.check');
+
 
     // Questions
     Route::get('/admin/topics/{topic}/questions', function (Topic $topic) {
