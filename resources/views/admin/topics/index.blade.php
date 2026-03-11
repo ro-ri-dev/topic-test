@@ -29,15 +29,16 @@
                                         {{ $topic->name }}
                                     </a>
 
-                                <x-admin.actions
-                                    :edit-url="route('admin.topics.edit', $topic)"
-                                    :delete-url="route('admin.topics.destroy', $topic)"
-                                    :confirm-message="
-                                        $topic->questions()->count()
-                                        ? 'Este topic contiene preguntas. Si lo eliminas se eliminarán TODAS sus preguntas. Puedes editar el nombre del topic y conservar las preguntas. Cancela si quieres solo cambiar el nombre del topic. Acepta si quieres ELIMINAR definitivamente'
-                                        : 'Este topic no contiene preguntas. Puedes eliminarlo o modificar su nombre. Acepta si quieres eliminar definitivamente'
-                                    "
-                                />
+<x-admin.actions
+    :play-url="route('topics.play', $topic)"
+    :edit-url="route('admin.topics.edit', $topic)"
+    :delete-url="route('admin.topics.destroy', $topic)"
+    :confirm-message="
+        $topic->questions()->count()
+        ? 'Este topic contiene preguntas. Si lo eliminas se eliminarán TODAS sus preguntas. Puedes editar el nombre del topic y conservar las preguntas. Cancela si quieres solo cambiar el nombre del topic. Acepta si quieres ELIMINAR definitivamente'
+        : 'Este topic no contiene preguntas. Puedes eliminarlo o modificar su nombre. Acepta si quieres eliminar definitivamente'
+    "
+/>
 
                                 </li>
 
