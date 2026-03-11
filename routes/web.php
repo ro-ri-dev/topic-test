@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Topic;
 use App\Http\Controllers\Admin\TopicController;
 use App\Http\Controllers\Admin\QuestionController;
+use App\Http\Controllers\TestPlayController;
 
 
 /*
@@ -39,6 +40,12 @@ Route::middleware(['auth'])->group(function () {
 
     Route::delete('/admin/topics/{topic}', [TopicController::class, 'destroy'])
         ->name('admin.topics.destroy');
+
+    Route::get('/topics/{topic}/play', [TestPlayController::class, 'show'])
+        ->name('topics.play');
+
+    Route::post('/topics/{topic}/play', [TestPlayController::class, 'check'])
+        ->name('topics.play.check');
 
 
     // Questions
