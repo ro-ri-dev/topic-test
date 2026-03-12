@@ -5,7 +5,7 @@
         </h2>
 
         <p class="mt-1 text-sm text-gray-600">
-            {{ __("Update your account's profile information and email address.") }}
+            {{ __("Update your account's profile information, email address and avatar.") }}
         </p>
     </header>
 
@@ -16,6 +16,33 @@
     <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
+
+        <div>
+            <h3 class="text-lg font-medium text-gray-900 mb-4">
+                Elige tu avatar
+            </h3>
+
+            <div class="flex gap-4 flex-wrap">
+                @foreach(['ashley','rodri','dani','endika','alondra','rocio'] as $avatar)
+                    <label class="cursor-pointer flex flex-col items-center">
+                        <input
+                            type="radio"
+                            name="avatar"
+                            value="{{ $avatar }}.png"
+                            class="mr-2"
+                            {{ old('avatar', $user->avatar) === $avatar.'.png' ? 'checked' : '' }}
+                        >
+
+                        <img
+                            src="{{ asset('assets/avatar/'.$avatar.'.png') }}"
+                            class="w-16 h-16 rounded-full border-2 hover:border-black mt-2"
+                        >
+                    </label>
+                @endforeach
+            </div>
+
+            <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
+        </div>
 
         <div>
             <x-input-label for="name" :value="__('Name')" />
