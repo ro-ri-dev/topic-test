@@ -21,12 +21,22 @@
                    class="{{ request()->is('admin/topics*') ? 'text-black font-semibold' : 'text-gray-600' }}">
                     Topics
                 </a>
+                <a href="{{ route('profile.edit') }}"
+   class="{{ request()->routeIs('profile.edit') ? 'text-black font-semibold' : 'text-gray-600' }}">
+    Perfil
+</a>
             </div>
 
             <!-- User -->
             <div class="flex items-center space-x-4">
+    @if(Auth::user()->avatar)
+    <img
+        src="{{ asset('assets/avatar/' . Auth::user()->avatar) }}"
+        class="w-8 h-8 rounded-full mr-2"
+    >
+@endif
                 <span class="text-sm text-gray-600">
-                    {{ Auth::user()->email ?? '' }}
+                    {{ Auth::user()->name ?? '' }}
                 </span>
 
                 <form method="POST" action="{{ route('logout') }}">
